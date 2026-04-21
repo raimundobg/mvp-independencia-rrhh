@@ -11,7 +11,6 @@ import documentosRouter from './routes/documentos';
 import organigramaRouter from './routes/organigrama';
 import reportesRouter from './routes/reportes';
 import auditoriaRouter from './routes/auditoria';
-import seedRouter from './routes/seed';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,7 +35,6 @@ app.use('/api/v1', documentosRouter);
 app.use('/api/v1', organigramaRouter);
 app.use('/api/v1', reportesRouter);
 app.use('/api/v1', auditoriaRouter);
-app.use('/api/v1', seedRouter);
 
 const frontendDist = path.join(__dirname, '../../frontend/dist');
 app.use(express.static(frontendDist));

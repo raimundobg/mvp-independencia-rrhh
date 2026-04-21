@@ -113,7 +113,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           bg="rgba(255,255,255,0.08)"
         >
           <Text fontSize="0.75rem" color="rgba(255,255,255,0.5)" mb={0.5}>Conectado como</Text>
-          <Text fontSize="0.85rem" color="white" fontWeight={600} noOfLines={1}>{user.nombre || user.email}</Text>
+          <Text fontSize="0.85rem" color="white" fontWeight={600} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user.nombre || user.email}</Text>
           <Box
             display="inline-block"
             mt={1}

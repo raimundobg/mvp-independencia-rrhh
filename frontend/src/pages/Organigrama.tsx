@@ -58,8 +58,8 @@ function OrgCard({ node, level = 0 }: { node: OrgNode; level?: number }) {
           >
             {node.nombres[0]}{node.apellido_paterno[0]}
           </Box>
-          <Text fontWeight={700} fontSize="0.8rem" noOfLines={1}>{node.nombres} {node.apellido_paterno}</Text>
-          <Text fontSize="0.7rem" opacity={0.8} noOfLines={1} mt={0.5}>{node.cargo}</Text>
+          <Text fontWeight={700} fontSize="0.8rem" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{node.nombres} {node.apellido_paterno}</Text>
+          <Text fontSize="0.7rem" opacity={0.8} mt={0.5} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{node.cargo}</Text>
           {hasChildren && (
             <Text fontSize="0.65rem" mt={1} opacity={0.6}>{open ? '▲' : '▼'} {node.children.length}</Text>
           )}

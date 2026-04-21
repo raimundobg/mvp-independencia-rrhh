@@ -94,10 +94,10 @@ export default function Directorio() {
                   {f.nombres[0]}{f.apellido_paterno[0]}
                 </Box>
                 <Box flex={1} minW={0}>
-                  <Text fontWeight={700} color={NAVY} fontSize="0.9rem" noOfLines={1}>
+                  <Text fontWeight={700} color={NAVY} fontSize="0.9rem" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {f.nombres} {f.apellido_paterno}
                   </Text>
-                  <Text fontSize="0.75rem" color="gray.500" noOfLines={1}>{f.cargo}</Text>
+                  <Text fontSize="0.75rem" color="gray.500" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.cargo}</Text>
                 </Box>
               </Flex>
 

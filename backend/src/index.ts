@@ -44,21 +44,22 @@ app.get('*', (_req, res) => {
 
 async function start() {
   console.log(JSON.stringify({ level: 'INFO', event: 'startup', DATABASE_URL_set: !!process.env.DATABASE_URL, NODE_ENV: process.env.NODE_ENV }));
+
+  app.listen(PORT, () => {
+    console.log(JSON.stringify({ level: 'INFO', event: 'server_start', port: PORT }));
+  });
+
   try {
     await initDB();
-    app.listen(PORT, () => {
-      console.log(JSON.stringify({ level: 'INFO', event: 'server_start', port: PORT }));
-    });
+    console.log(JSON.stringify({ level: 'INFO', event: 'db_ready' }));
   } catch (e: any) {
     console.error(JSON.stringify({
       level: 'ERROR',
-      event: 'startup_failed',
+      event: 'db_init_failed',
       error: String(e),
       message: e?.message,
       errors: e?.errors?.map?.((x: any) => String(x)),
-      stack: e?.stack,
     }));
-    process.exit(1);
   }
 }
 

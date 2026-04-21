@@ -43,13 +43,21 @@ app.get('*', (_req, res) => {
 });
 
 async function start() {
+  console.log(JSON.stringify({ level: 'INFO', event: 'startup', DATABASE_URL_set: !!process.env.DATABASE_URL, NODE_ENV: process.env.NODE_ENV }));
   try {
     await initDB();
     app.listen(PORT, () => {
       console.log(JSON.stringify({ level: 'INFO', event: 'server_start', port: PORT }));
     });
-  } catch (e) {
-    console.error(JSON.stringify({ level: 'ERROR', event: 'startup_failed', error: String(e) }));
+  } catch (e: any) {
+    console.error(JSON.stringify({
+      level: 'ERROR',
+      event: 'startup_failed',
+      error: String(e),
+      message: e?.message,
+      errors: e?.errors?.map?.((x: any) => String(x)),
+      stack: e?.stack,
+    }));
     process.exit(1);
   }
 }

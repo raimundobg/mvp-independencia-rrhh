@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultora Hélice — Propuesta Sistema RRHH</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #0f172a;
+    --ink-mid:    #334155;
+    --ink-soft:   #64748b;
+    --blue:       #1d4ed8;
+    --blue-lt:    #dbeafe;
+    --blue-mid:   #3b82f6;
+    --gold:       #92400e;
+    --gold-lt:    #fef3c7;
+    --gold-mid:   #d97706;
+    --purple:     #5b21b6;
+    --purple-lt:  #ede9fe;
+    --purple-mid: #7c3aed;
+    --green:      #065f46;
+    --green-lt:   #d1fae5;
+    --red:        #991b1b;
+    --red-lt:     #fee2e2;
+    --bg:         #ffffff;
+    --surface:    #f8fafc;
+    --border:     #e2e8f0;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ══ HERO ══ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px 120px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-rule {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--purple-mid), var(--gold-mid));
+  }
+
+  .hero-wm {
+    position: absolute;
+    bottom: -80px; right: -40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 400px;
+    font-weight: 300;
+    color: rgba(15,23,42,0.025);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .helix-svg { margin-bottom: 40px; animation: float 6s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  .badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--blue);
+    border: 1.5px solid var(--blue);
+    background: var(--blue-lt);
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(50px, 8vw, 104px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--blue); }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-bottom: 48px;
+    line-height: 1.5;
+  }
+
+  .hero-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    line-height: 2.2;
+  }
+
+  .hero-meta strong { color: var(--ink); font-weight: 500; }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+
+  .scroll-cue span {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:.25} 50%{opacity:1} }
+
+  /* ══ CLIENTS ══ */
+  .clients {
+    background: var(--ink);
+    padding: 56px 24px;
+    text-align: center;
+  }
+
+  .clients-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 36px;
+  }
+
+  .clients-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .cpill {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: rgba(255,255,255,0.88);
+    padding: 9px 22px;
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: all 0.25s;
+  }
+
+  .cpill:hover { background: rgba(255,255,255,0.07); color: #fff; }
+
+  /* ══ SECTION WRAPPER ══ */
+  .sec { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+  .sec-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .sec-h {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 5vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .sec-h em { font-style: italic; color: var(--blue); }
+
+  /* ══ WHY ══ */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    margin-top: 60px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .wcard {
+    background: var(--bg);
+    padding: 40px 32px;
+    position: relative;
+    transition: background 0.2s;
+    overflow: hidden;
+  }
+
+  .wcard:hover { background: var(--blue-lt); }
+
+  .wcard::before {
+    content:'';
+    position: absolute;
+    top:0; left:0; right:0;
+    height: 3px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .wcard:hover::before { transform: scaleX(1); }
+
+  .wnum {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .wcard h3 { font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+  .wcard p  { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+
+  /* ══ QUOTE BOX ══ */
+  .qbox {
+    background: var(--ink);
+    padding: 64px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .qbox::before {
+    content:'"';
+    position: absolute;
+    top:-40px; left:32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 240px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .qbox p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 30px);
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+    position: relative; z-index:1;
+  }
+
+  .qbox p strong { color:#fff; font-style:normal; font-weight:400; }
+
+  /* ══ FLOW ══ */
+  .flow-wrap {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 24px;
+  }
+
+  .flow-inner { max-width: 1000px; margin: 0 auto; }
+
+  .flow-steps { margin-top: 60px; position: relative; }
+
+  .flow-steps::before {
+    content:'';
+    position: absolute;
+    left:27px; top:0; bottom:0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--blue), var(--purple-mid), rgba(124,58,237,0));
+  }
+
+  .fstep {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .fstep:last-child { border-bottom: none; }
+
+  .fdot {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    color: var(--blue);
+    position: relative; z-index:1; flex-shrink:0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+
+  .fcontent h3 { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; margin-top: 14px; }
+  .fcontent p  { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+
+  .ftags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+  .ftag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.08em;
+    color: var(--blue); background: var(--blue-lt);
+    border: 1px solid #93c5fd;
+    padding: 4px 10px; border-radius: 4px; font-weight: 500;
+  }
+
+  /* ══ PLANS ══ */
+  .plans-wrap { padding: 100px 24px; max-width: 1360px; margin: 0 auto; }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .pcard {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    padding: 48px 40px;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .pcard:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .pcard.featured { border-color: var(--gold-mid); background: #fffbeb; }
+  .pcard.premium  { border-color: var(--purple-mid); background: #faf5ff; }
+
+  .ptopbar { position: absolute; top:0; left:0; right:0; height: 4px; }
+  .p1 .ptopbar { background: var(--blue); }
+  .p2 .ptopbar { background: linear-gradient(90deg, var(--gold-mid), #f59e0b); }
+  .p3 .ptopbar { background: linear-gradient(90deg, var(--purple-mid), #9333ea); }
+
+  .peyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    padding: 5px 12px; border-radius: 100px;
+    display: inline-block; margin-bottom: 24px; width: fit-content; margin-top: 8px;
+  }
+
+  .p1 .peyebrow { color: var(--blue);   background: var(--blue-lt);   border: 1px solid #93c5fd; }
+  .p2 .peyebrow { color: var(--gold);   background: var(--gold-lt);   border: 1px solid #fcd34d; }
+  .p3 .peyebrow { color: var(--purple); background: var(--purple-lt); border: 1px solid #c4b5fd; }
+
+  .pname {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 300; color: var(--ink); line-height: 1.1; margin-bottom: 12px;
+  }
+
+  .ptagline { font-size: 14px; color: var(--ink-mid); line-height: 1.65; margin-bottom: 32px; }
+
+  .pprice-block { margin-bottom: 4px; }
+
+  .pcurrency {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--ink-soft);
+    vertical-align: top; margin-top: 10px; display: inline-block; margin-right: 3px;
+  }
+
+  .pamount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; font-weight: 300; color: var(--ink); line-height: 1;
+  }
+
+  .pperiod {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--ink-soft); display: block;
+    margin-top: 6px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  .pmaint {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--ink-mid);
+    padding: 12px 16px; background: var(--surface);
+    border-left: 3px solid; margin: 20px 0 32px; line-height: 1.65;
+  }
+
+  .p1 .pmaint { border-color: var(--blue); }
+  .p2 .pmaint { border-color: var(--gold-mid); }
+  .p3 .pmaint { border-color: var(--purple-mid); }
+
+  .phr { height: 1px; background: var(--border); margin: 24px 0; }
+
+  .pglbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 14px; font-weight: 500;
+  }
+
+  .flist {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 16px; flex: 1;
+  }
+
+  .flist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13.5px; color: var(--ink); line-height: 1.5;
+  }
+
+  .flist li.dim { color: var(--ink-soft); }
+
+  .ico {
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; flex-shrink: 0; margin-top: 1px; font-weight: 700;
+  }
+
+  .iyes { background: var(--green-lt);  color: var(--green); }
+  .ino  { background: var(--red-lt);    color: var(--red); }
+  .iai  { background: var(--purple-lt); color: var(--purple); }
+
+  .pcta {
+    display: block; text-align: center;
+    padding: 15px 32px; margin-top: 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+  }
+
+  .p1 .pcta { background: var(--blue);       color: #fff; }
+  .p1 .pcta:hover { background: #1e40af; }
+  .p2 .pcta { background: var(--gold-mid);   color: #fff; }
+  .p2 .pcta:hover { background: #b45309; }
+  .p3 .pcta { background: var(--purple-mid); color: #fff; }
+  .p3 .pcta:hover { background: #6d28d9; }
+
+  .rec-tag {
+    position: absolute; top: 20px; right: -30px;
+    background: var(--gold-mid); color: #fff;
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 5px 44px; transform: rotate(45deg); font-weight: 500;
+  }
+
+  /* ══ COMPARISON ══ */
+  .cmp-wrap {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 24px; overflow-x: auto;
+  }
+
+  .cmp-inner { max-width: 1000px; margin: 0 auto; }
+
+  .ctable {
+    width: 100%; border-collapse: collapse;
+    margin-top: 56px; font-size: 13px;
+  }
+
+  .ctable th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+    padding: 16px 20px; text-align: left;
+    border-bottom: 2px solid var(--border);
+    background: var(--bg); color: var(--ink-soft);
+  }
+
+  .ctable th:nth-child(2) { color: var(--blue); }
+  .ctable th:nth-child(3) { color: var(--gold-mid); }
+  .ctable th:nth-child(4) { color: var(--purple-mid); }
+
+  .ctable td {
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink); background: var(--bg);
+    vertical-align: middle;
+  }
+
+  .ctable tr:hover td { background: var(--blue-lt); }
+  .ctable td:not(:first-child) { text-align: center; }
+
+  .ctable .grp td {
+    background: var(--ink);
+    color: rgba(255,255,255,0.9);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 10px 20px; font-weight: 500;
+  }
+
+  .cyes { color: var(--green); font-weight: 700; font-size: 15px; }
+  .cno  { color: #cbd5e1; font-size: 15px; }
+  .cai  { color: var(--purple-mid); font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; }
+
+  /* ══ AI ══ */
+  .ai-wrap { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+
+  .ai-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px; margin-top: 60px;
+  }
+
+  .ai-info { background: var(--ink); padding: 56px; }
+
+  .ai-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 300; color: #fff;
+    margin-bottom: 20px; line-height: 1.2;
+  }
+
+  .ai-info p { font-size: 14px; color: rgba(255,255,255,0.68); line-height: 1.8; margin-bottom: 24px; }
+
+  .ai-caps { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .ai-caps li {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13.5px; color: rgba(255,255,255,0.8);
+  }
+
+  .ai-caps li::before { content:'→'; color: #a78bfa; font-family: 'DM Mono', monospace; font-weight: 500; }
+
+  .ai-chat {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    padding: 32px; display: flex; flex-direction: column; gap: 16px;
+  }
+
+  .chdr {
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 4px;
+  }
+
+  .cav {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-mid), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px;
+  }
+
+  .cnm { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--purple-mid); font-weight: 500; }
+  .cst { font-size: 10px; color: var(--green); font-family: 'DM Mono', monospace; }
+
+  .bbl {
+    padding: 12px 16px; font-size: 13px; line-height: 1.6;
+    max-width: 88%; opacity: 0;
+    animation: popIn 0.4s ease forwards;
+  }
+
+  .bbl.usr {
+    background: var(--blue); color: #fff;
+    align-self: flex-end; margin-left: auto;
+    border-radius: 14px 14px 3px 14px;
+  }
+
+  .bbl.bot {
+    background: var(--bg); border: 1px solid var(--border);
+    color: var(--ink); border-radius: 14px 14px 14px 3px;
+  }
+
+  @keyframes popIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .bbl:nth-child(2){animation-delay:.3s}
+  .bbl:nth-child(3){animation-delay:1s}
+  .bbl:nth-child(4){animation-delay:1.9s}
+  .bbl:nth-child(5){animation-delay:2.8s}
+
+  /* ══ SECURITY ══ */
+  .sec-wrap {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 24px;
+  }
+
+  .sec-inner { max-width: 1200px; margin: 0 auto; }
+
+  .sec-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px; margin-top: 60px;
+    background: var(--border); border: 1px solid var(--border);
+  }
+
+  .scard {
+    background: var(--bg); padding: 36px 28px;
+    border-top: 3px solid var(--blue);
+    transition: background 0.2s;
+  }
+
+  .scard:hover { background: var(--blue-lt); }
+
+  .sico { font-size: 28px; margin-bottom: 16px; display: block; }
+  .scard h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .scard p  { font-size: 13px; color: var(--ink-mid); line-height: 1.7; }
+
+  /* ══ TIMELINE ══ */
+  .tl-wrap { padding: 100px 24px; max-width: 860px; margin: 0 auto; }
+
+  .tlist { margin-top: 60px; position: relative; }
+
+  .tlist::before {
+    content:'';
+    position: absolute;
+    left: 100px; top:0; bottom:0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--blue), rgba(29,78,216,0));
+  }
+
+  .titem {
+    display: grid;
+    grid-template-columns: 100px 40px 1fr;
+    gap: 24px; padding-bottom: 48px; align-items: start;
+  }
+
+  .titem:last-child { padding-bottom: 0; }
+
+  .tweek {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--blue); letter-spacing: 0.15em;
+    text-align: right; padding-top: 4px; font-weight: 500;
+  }
+
+  .tdcol { display: flex; flex-direction: column; align-items: center; position: relative; }
+
+  .tdot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--blue);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--blue);
+    position: relative; z-index:1;
+  }
+
+  .tcontent h4 { font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .tcontent p  { font-size: 13.5px; color: var(--ink-mid); line-height: 1.75; }
+
+  /* ══ CTA ══ */
+  .cta-wrap {
+    background: var(--ink);
+    padding: 120px 24px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+
+  .cta-wrap::before {
+    content: 'HÉLICE';
+    position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px; font-weight: 300;
+    color: rgba(255,255,255,0.025);
+    white-space: nowrap; pointer-events: none;
+  }
+
+  .cta-wrap h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 72px); font-weight: 300;
+    color: #fff; margin-bottom: 20px; line-height: 1.1;
+  }
+
+  .cta-wrap h2 em { font-style: italic; color: #93c5fd; }
+  .cta-wrap p { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 48px; }
+
+  .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  .btn-p {
+    padding: 16px 48px;
+    background: var(--blue-mid); color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    text-decoration: none; transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-p:hover { background: #2563eb; transform: translateY(-2px); }
+
+  .btn-s {
+    padding: 16px 48px;
+    background: transparent; color: rgba(255,255,255,0.8);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.28);
+    transition: all 0.2s;
+  }
+
+  .btn-s:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+
+  footer {
+    background: #020617;
+    padding: 40px 24px; text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.12em; line-height: 2.2;
+  }
+
+  footer span { color: #60a5fa; }
+
+  /* ══ REVEAL ══ */
+  .rv { opacity:0; transform:translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .rv.on { opacity:1; transform:translateY(0); }
+  .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
+
+  /* ══ RESPONSIVE ══ */
+  @media(max-width:768px){
+    .plans-grid{grid-template-columns:1fr}
+    .ai-grid{grid-template-columns:1fr}
+    .qbox{padding:40px 28px}
+    .tlist::before{left:76px}
+    .titem{grid-template-columns:76px 32px 1fr; gap:14px}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-wm">H</div>
+
+  <svg class="helix-svg" width="72" height="72" viewBox="0 0 72 72" fill="none">
+    <circle cx="36" cy="36" r="34" stroke="#e2e8f0" stroke-width="1.5"/>
+    <path d="M14 18 Q36 34 58 18" stroke="#1d4ed8" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M14 30 Q36 46 58 30" stroke="#1d4ed8" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+    <path d="M14 42 Q36 58 58 42" stroke="#1d4ed8" stroke-width="2" fill="none" stroke-linecap="round" opacity=".3"/>
+    <circle cx="14" cy="18" r="4" fill="#1d4ed8"/>
+    <circle cx="58" cy="18" r="4" fill="#1d4ed8"/>
+  </svg>
+
+  <div class="badge">Propuesta Técnica — Confidencial</div>
+
+  <h1>Sistema de Gestión<br>de <em>Personas</em></h1>
+  <p class="hero-sub">Plataforma SaaS para la administración digital<br>del capital humano institucional</p>
+
+  <p class="hero-meta">
+    Preparado para <strong>Corporación de Desarrollo Social de Independencia</strong><br>
+    por <strong>Consultora Hélice</strong> — Abril 2026
+  </p>
+
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    <span>Explorar</span>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="clients">
+  <p class="clients-lbl">Clientes que confían en Consultora Hélice</p>
+  <div class="clients-row">
+    <span class="cpill">Banco Interamericano de Desarrollo</span>
+    <span class="cpill">La Polla Chilena de Beneficencia</span>
+    <span class="cpill">Ministerio de las Culturas</span>
+    <span class="cpill">Fundación Luksic</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<div class="sec">
+  <p class="sec-lbl rv">El desafío</p>
+  <h2 class="sec-h rv">La gestión de personas<br><em>merece mejor tecnología</em></h2>
+
+  <div class="why-grid">
+    <div class="wcard rv d1">
+      <p class="wnum">01</p>
+      <h3>Información dispersa</h3>
+      <p>Fichas en papel, Excel y correos electrónicos generan errores, duplicidades y riesgos legales en cada proceso de RRHH.</p>
+    </div>
+    <div class="wcard rv d2">
+      <p class="wnum">02</p>
+      <h3>Procesos manuales</h3>
+      <p>Permisos, vacaciones y documentos que circulan por WhatsApp o email son imposibles de auditar y rastrear formalmente.</p>
+    </div>
+    <div class="wcard rv d3">
+      <p class="wnum">03</p>
+      <h3>Sin trazabilidad</h3>
+      <p>Cuando la Contraloría o la Dirección del Trabajo fiscaliza, demostrar quién hizo qué y cuándo toma días de búsqueda.</p>
+    </div>
+    <div class="wcard rv d4">
+      <p class="wnum">04</p>
+      <h3>Datos desactualizados</h3>
+      <p>El organigrama real rara vez coincide con el oficial. Los directorios están desactualizados. Nadie sabe quién reporta a quién.</p>
+    </div>
+  </div>
+
+  <div class="qbox rv">
+    <p>Nuestra filosofía de adopción: <strong>empezar con lo esencial, consolidar, y expandir.</strong> Un sistema que el equipo use todos los días desde el primer mes vale más que una plataforma compleja que nadie adopta. Por eso proponemos tres planes con crecimiento progresivo.</p>
+  </div>
+</div>
+
+<!-- FLOW -->
+<div class="flow-wrap">
+  <div class="flow-inner">
+    <p class="sec-lbl rv">Cómo funciona</p>
+    <h2 class="sec-h rv">Flujos principales<br><em>del sistema</em></h2>
+
+    <div class="flow-steps">
+      <div class="fstep rv">
+        <div class="fdot">01</div>
+        <div class="fcontent">
+          <h3>Acceso por roles</h3>
+          <p>Cada funcionario ingresa con su correo institucional. El sistema identifica automáticamente su perfil y muestra solo lo que le corresponde. Admin configura el sistema completo. RRHH gestiona personas. Jefatura supervisa su equipo. Funcionario accede a su propia información.</p>
+          <div class="ftags">
+            <span class="ftag">Firebase Auth</span><span class="ftag">4 roles</span><span class="ftag">JWT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fstep rv">
+        <div class="fdot">02</div>
+        <div class="fcontent">
+          <h3>Ficha digital del funcionario</h3>
+          <p>RRHH crea o importa masivamente las fichas desde Excel. Cada funcionario puede actualizar sus datos personales, quedando en estado pendiente hasta que RRHH los aprueba. El historial completo queda registrado con usuario, fecha y hora de cada cambio.</p>
+          <div class="ftags">
+            <span class="ftag">Carga masiva Excel</span><span class="ftag">Aprobación de cambios</span><span class="ftag">Auditoría automática</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fstep rv">
+        <div class="fdot">03</div>
+        <div class="fcontent">
+          <h3>Solicitud y aprobación de permisos</h3>
+          <p>Funcionario solicita permiso desde la plataforma o celular. El sistema notifica automáticamente a la jefatura directa por email. Jefatura aprueba, rechaza o solicita modificación. El balance de días se actualiza en tiempo real.</p>
+          <div class="ftags">
+            <span class="ftag">Notificación email</span><span class="ftag">Balance automático</span><span class="ftag">Feriados Chile</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fstep rv">
+        <div class="fdot">04</div>
+        <div class="fcontent">
+          <h3>Gestión documental y firma digital</h3>
+          <p>RRHH genera contratos, anexos y certificados desde plantillas con variables dinámicas. El funcionario recibe notificación, revisa el documento y firma con un código OTP enviado a su email. El PDF queda sellado con timestamp, IP y email. Copia automática al email personal.</p>
+          <div class="ftags">
+            <span class="ftag">Templates dinámicos</span><span class="ftag">OTP por email</span><span class="ftag">PDF en S3</span><span class="ftag">Inamovible</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fstep rv">
+        <div class="fdot">05</div>
+        <div class="fcontent">
+          <h3>Reportes y exportación PreviRed</h3>
+          <p>RRHH descarga dotación completa, balance de permisos, documentos pendientes y auditoría en Excel. Para remuneraciones, el sistema genera un archivo TXT con el formato oficial de PreviRed listo para carga manual, con RUT, sueldo imponible, AFP e Isapre de cada funcionario.</p>
+          <div class="ftags">
+            <span class="ftag">Excel descargable</span><span class="ftag">TXT PreviRed</span><span class="ftag">Dashboard en vivo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANS -->
+<div class="plans-wrap">
+  <p class="sec-lbl rv" style="text-align:center">Planes disponibles</p>
+  <h2 class="sec-h rv" style="text-align:center">Elige tu punto<br><em>de partida</em></h2>
+
+  <div class="plans-grid">
+
+    <!-- P1 -->
+    <div class="pcard p1 rv d1">
+      <div class="ptopbar"></div>
+      <div class="peyebrow">Plan Esencial</div>
+      <h3 class="pname">MVP<br>Fundacional</h3>
+      <p class="ptagline">El sistema core que el equipo adoptará desde el primer día. Todo lo esencial, sin complejidad innecesaria.</p>
+      <div class="pprice-block">
+        <span class="pcurrency">CLP</span><span class="pamount">2.800.000</span>
+        <span class="pperiod">Neto — pago único de implementación</span>
+      </div>
+      <div class="pmaint">Mantención mensual: <strong>$77.472 CLP</strong><br>Hosting + dominio $10.000 · Soporte técnico 1 UTM</div>
+      <div class="phr"></div>
+      <p class="pglbl">Incluye</p>
+      <ul class="flist">
+        <li><span class="ico iyes">✓</span> Ficha digital completa por funcionario</li>
+        <li><span class="ico iyes">✓</span> 4 perfiles de usuario con permisos diferenciados</li>
+        <li><span class="ico iyes">✓</span> Gestión de permisos y vacaciones con aprobación</li>
+        <li><span class="ico iyes">✓</span> Gestión documental y firma digital simple (OTP)</li>
+        <li><span class="ico iyes">✓</span> Organigrama interactivo y directorio</li>
+        <li><span class="ico iyes">✓</span> Historial de cambios auditable</li>
+        <li><span class="ico iyes">✓</span> Reportes Excel exportables</li>
+        <li><span class="ico iyes">✓</span> Exportación básica compatible con PreviRed (TXT)</li>
+        <li><span class="ico iyes">✓</span> App web responsiva — compatible iOS y Android</li>
+        <li><span class="ico iyes">✓</span> Hosting AWS + dominio</li>
+        <li><span class="ico iyes">✓</span> Cifrado de datos (Ley 19.628)</li>
+      </ul>
+      <div class="phr"></div>
+      <p class="pglbl">No incluye en este plan</p>
+      <ul class="flist">
+        <li class="dim"><span class="ico ino">✕</span> Integración directa APIs externas (PreviRed, SIAPER, DIPRES)</li>
+        <li class="dim"><span class="ico ino">✕</span> Módulo de remuneraciones y liquidaciones automáticas</li>
+        <li class="dim"><span class="ico ino">✕</span> Control biométrico de asistencia</li>
+        <li class="dim"><span class="ico ino">✕</span> Asistente IA conversacional</li>
+      </ul>
+      <a href="mailto:paula.espinoza@heliceconsultora.cl?subject=Plan Esencial RRHH" class="pcta">Solicitar este plan</a>
+    </div>
+
+    <!-- P2 -->
+    <div class="pcard p2 featured rv d2" style="position:relative;overflow:hidden">
+      <div class="ptopbar"></div>
+      <div class="rec-tag">Recomendado</div>
+      <div class="peyebrow">Plan Integrado</div>
+      <h3 class="pname">Conectado<br>e Inteligente</h3>
+      <p class="ptagline">Todo el plan esencial más integración con ecosistemas regulatorios y un asistente IA para acelerar la adopción.</p>
+      <div class="pprice-block">
+        <span class="pcurrency">CLP</span><span class="pamount">8.000.000</span>
+        <span class="pperiod">Neto — pago único de implementación</span>
+      </div>
+      <div class="pmaint">Mantención mensual: <strong>$96.840 CLP</strong><br>Hosting + dominio $10.000 · Soporte técnico 1.25 UTM</div>
+      <div class="phr"></div>
+      <p class="pglbl">Todo el Plan Esencial, más:</p>
+      <ul class="flist">
+        <li><span class="ico iyes">✓</span> Integración directa PreviRed (declaración automática)</li>
+        <li><span class="ico iyes">✓</span> Integración SIAPER (actos administrativos)</li>
+        <li><span class="ico iyes">✓</span> Integración DIPRES (informes presupuestarios)</li>
+        <li><span class="ico iyes">✓</span> Integración licencias médicas IMED / Medipass</li>
+        <li><span class="ico iyes">✓</span> Módulo honorarios con seguimiento de boletas</li>
+        <li><span class="ico iyes">✓</span> Horas extraordinarias con cálculo automático</li>
+        <li><span class="ico iyes">✓</span> Exportación contable parametrizable (ERP)</li>
+        <li><span class="ico iai">✦</span> Asistente IA conversacional para usuarios</li>
+        <li><span class="ico iai">✦</span> IA responde preguntas sobre datos propios del funcionario</li>
+        <li><span class="ico iai">✦</span> Onboarding guiado con IA para nuevos usuarios</li>
+      </ul>
+      <div class="phr"></div>
+      <p class="pglbl">Integraciones incluidas ($1.000.000 c/u)</p>
+      <ul class="flist">
+        <li><span class="ico iyes">✓</span> PreviRed — declaración previsional mensual</li>
+        <li><span class="ico iyes">✓</span> SIAPER — ingreso de actos administrativos</li>
+        <li><span class="ico iyes">✓</span> DIPRES — reportes de gasto en personal</li>
+        <li><span class="ico iyes">✓</span> IMED / Medipass — gestión licencias médicas</li>
+        <li><span class="ico iyes">✓</span> Contabilidad — archivo ERP parametrizable</li>
+      </ul>
+      <a href="mailto:paula.espinoza@heliceconsultora.cl?subject=Plan Integrado RRHH" class="pcta">Solicitar este plan</a>
+    </div>
+
+    <!-- P3 -->
+    <div class="pcard p3 premium rv d3">
+      <div class="ptopbar"></div>
+      <div class="peyebrow">Plan Enterprise</div>
+      <h3 class="pname">Completo<br>Total</h3>
+      <p class="ptagline">La solución definitiva con todos los módulos, onboarding presencial, seguimiento continuo y capacidades enterprise.</p>
+      <div class="pprice-block">
+        <span class="pcurrency">CLP</span><span class="pamount">14.990.990</span>
+        <span class="pperiod">Neto — pago único de implementación</span>
+      </div>
+      <div class="pmaint">Mantención mensual: <strong>$121.050 CLP</strong><br>Hosting + dominio $10.000 · Soporte técnico 1.65 UTM</div>
+      <div class="phr"></div>
+      <p class="pglbl">Todo el Plan Integrado, más:</p>
+      <ul class="flist">
+        <li><span class="ico iyes">✓</span> Módulo de remuneraciones completo con liquidaciones</li>
+        <li><span class="ico iyes">✓</span> Libro de remuneraciones electrónico (LRE)</li>
+        <li><span class="ico iyes">✓</span> Cálculo automático finiquitos (Código del Trabajo)</li>
+        <li><span class="ico iyes">✓</span> Control de asistencia con turnos y holguras</li>
+        <li><span class="ico iyes">✓</span> Compatibilidad Ley 40 horas</li>
+        <li><span class="ico iyes">✓</span> DDJJ 1887 y certificados de renta</li>
+        <li><span class="ico iyes">✓</span> SSO — autenticación única corporativa</li>
+        <li><span class="ico iyes">✓</span> Workflows automatizados configurables</li>
+        <li><span class="ico iai">✦</span> IA avanzada con análisis de datos de RRHH</li>
+        <li><span class="ico iai">✦</span> IA genera reportes en lenguaje natural</li>
+        <li><span class="ico iai">✦</span> IA detecta patrones: ausentismo, rotación, riesgos</li>
+        <li><span class="ico iyes">✓</span> Onboarding presencial (2 jornadas de capacitación)</li>
+        <li><span class="ico iyes">✓</span> Acompañamiento 90 días post lanzamiento</li>
+        <li><span class="ico iyes">✓</span> SLA prioritario: respuesta crítica en 2 horas</li>
+        <li><span class="ico iyes">✓</span> Migración de datos históricos asistida</li>
+      </ul>
+      <a href="mailto:paula.espinoza@heliceconsultora.cl?subject=Plan Enterprise RRHH" class="pcta">Solicitar este plan</a>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div class="cmp-wrap">
+  <div class="cmp-inner">
+    <p class="sec-lbl rv" style="text-align:center">Comparativa</p>
+    <h2 class="sec-h rv" style="text-align:center">Qué incluye<br><em>cada plan</em></h2>
+
+    <table class="ctable rv">
+      <thead>
+        <tr>
+          <th>Funcionalidad</th><th>Esencial</th><th>Integrado</th><th>Enterprise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="grp"><td colspan="4">Core del sistema</td></tr>
+        <tr><td>Ficha digital de funcionarios</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Carga masiva Excel</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>4 perfiles de usuario</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Organigrama + directorio interactivo</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Historial de cambios auditable</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>App web responsiva (iOS + Android)</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr class="grp"><td colspan="4">Gestión operativa</td></tr>
+        <tr><td>Permisos y vacaciones con aprobación</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Firma digital simple (OTP email)</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Reportes Excel exportables</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Exportación TXT básica PreviRed</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Horas extraordinarias</td><td class="cno">—</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Módulo honorarios + boletas</td><td class="cno">—</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr class="grp"><td colspan="4">Integraciones externas</td></tr>
+        <tr><td>Integración directa PreviRed</td><td class="cno">—</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>SIAPER</td><td class="cno">—</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>DIPRES</td><td class="cno">—</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>IMED / Medipass</td><td class="cno">—</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>ERP / Contabilidad</td><td class="cno">—</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>SSO corporativo</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+        <tr class="grp"><td colspan="4">Remuneraciones</td></tr>
+        <tr><td>Liquidaciones automáticas</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+        <tr><td>Libro de remuneraciones electrónico</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+        <tr><td>Finiquitos automatizados</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+        <tr><td>DDJJ 1887 + certificados de renta</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+        <tr class="grp"><td colspan="4">Inteligencia Artificial</td></tr>
+        <tr><td>Asistente IA para usuarios</td><td class="cno">—</td><td class="cai">Incluido</td><td class="cai">Avanzado</td></tr>
+        <tr><td>IA responde sobre datos propios</td><td class="cno">—</td><td class="cai">Incluido</td><td class="cai">Incluido</td></tr>
+        <tr><td>IA analiza patrones RRHH</td><td class="cno">—</td><td class="cno">—</td><td class="cai">Incluido</td></tr>
+        <tr class="grp"><td colspan="4">Implementación y soporte</td></tr>
+        <tr><td>Hosting AWS + dominio</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Cifrado datos (Ley 19.628)</td><td class="cyes">✓</td><td class="cyes">✓</td><td class="cyes">✓</td></tr>
+        <tr><td>Onboarding presencial</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+        <tr><td>Acompañamiento 90 días</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+        <tr><td>SLA prioritario 2h críticos</td><td class="cno">—</td><td class="cno">—</td><td class="cyes">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- AI -->
+<div class="ai-wrap">
+  <p class="sec-lbl rv">Disponible en planes Integrado y Enterprise</p>
+  <h2 class="sec-h rv">Asistente <em>IA</em><br>para tu equipo</h2>
+
+  <div class="ai-grid rv">
+    <div class="ai-info">
+      <h3>Un asistente que conoce tu institución</h3>
+      <p>Conectado directamente con los datos del sistema, cualquier funcionario puede hacer preguntas en lenguaje natural y obtener respuestas instantáneas sin navegar por menús.</p>
+      <p>Acelera el onboarding de nuevos usuarios y reduce la carga de consultas repetitivas al equipo de RRHH.</p>
+      <ul class="ai-caps">
+        <li>Consultar cuántos días de vacaciones le quedan</li>
+        <li>Revisar el estado de sus solicitudes de permiso</li>
+        <li>Saber quién es su jefe directo y sus datos de contacto</li>
+        <li>Consultar qué documentos tiene pendientes de firma</li>
+        <li>Recibir guía paso a paso para usar el sistema</li>
+        <li>Generar reportes en lenguaje natural (Plan Enterprise)</li>
+      </ul>
+    </div>
+
+    <div class="ai-chat">
+      <div class="chdr">
+        <div class="cav">✦</div>
+        <div>
+          <div class="cnm">Asistente Hélice IA</div>
+          <div class="cst">● En línea</div>
+        </div>
+      </div>
+      <div class="bbl usr">¿Cuántos días de vacaciones me quedan este año?</div>
+      <div class="bbl bot">Hola María. Según tu ficha, tienes <strong>12 días hábiles disponibles</strong> de los 15 que te corresponden en 2026. Usaste 3 días en febrero. Tu próximo período vence el 31 de diciembre.</div>
+      <div class="bbl usr">¿Y tengo algún documento pendiente?</div>
+      <div class="bbl bot">Sí, tienes <strong>1 documento pendiente de firma</strong>: tu anexo de contrato actualizado. Fue enviado el 15 de abril. Puedes firmarlo desde la sección Mis Documentos.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div class="sec-wrap">
+  <div class="sec-inner">
+    <p class="sec-lbl rv" style="text-align:center">Seguridad y cumplimiento</p>
+    <h2 class="sec-h rv" style="text-align:center">Protección de datos<br><em>conforme a la ley</em></h2>
+
+    <div class="sec-grid rv">
+      <div class="scard"><span class="sico">⚖</span><h4>Ley 19.628</h4><p>Cumplimiento integral de la Ley de Protección de Datos Personales. Los datos sensibles de funcionarios son tratados con las salvaguardas legales exigidas.</p></div>
+      <div class="scard"><span class="sico">🔐</span><h4>Cifrado AES-256</h4><p>RUT, sueldo, previsión e información personal se almacenan con cifrado AES-256-GCM de nivel bancario, adicional al cifrado de la base de datos.</p></div>
+      <div class="scard"><span class="sico">☁</span><h4>Infraestructura AWS</h4><p>Hosting en Amazon Web Services con cifrado en reposo en S3 y DynamoDB, HTTPS obligatorio y certificados SSL automáticos.</p></div>
+      <div class="scard"><span class="sico">🔍</span><h4>Trazabilidad total</h4><p>Cada acción queda registrada con usuario, fecha, hora, acción y valor anterior. Apto para fiscalización de Contraloría y Dirección del Trabajo.</p></div>
+      <div class="scard"><span class="sico">📱</span><h4>Acceso seguro por roles</h4><p>Cada usuario ve solo lo que le corresponde. Los tokens de sesión expiran automáticamente y se validan en cada solicitud al backend.</p></div>
+      <div class="scard"><span class="sico">📄</span><h4>Portabilidad garantizada</h4><p>Al término del contrato, toda la información se entrega de manera íntegra vía API o descarga directa. Sus datos siempre son suyos.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="tl-wrap">
+  <p class="sec-lbl rv">Implementación</p>
+  <h2 class="sec-h rv">De la firma<br><em>al go-live</em></h2>
+
+  <div class="tlist">
+    <div class="titem rv">
+      <div class="tweek">Semana<br>1–2</div>
+      <div class="tdcol"><div class="tdot"></div></div>
+      <div class="tcontent">
+        <h4>Levantamiento y configuración</h4>
+        <p>Reunión de kick-off. Recopilación de estructura organizacional, cargos, unidades y nómina de funcionarios. Configuración inicial del sistema con datos de la Corporación.</p>
+      </div>
+    </div>
+    <div class="titem rv">
+      <div class="tweek">Semana<br>3–6</div>
+      <div class="tdcol"><div class="tdot"></div></div>
+      <div class="tcontent">
+        <h4>Desarrollo e implementación</h4>
+        <p>Construcción del sistema en ambiente productivo. Carga inicial de fichas de funcionarios. Configuración de roles, permisos y plantillas de documentos. Pruebas internas.</p>
+      </div>
+    </div>
+    <div class="titem rv">
+      <div class="tweek">Semana<br>7</div>
+      <div class="tdcol"><div class="tdot"></div></div>
+      <div class="tcontent">
+        <h4>Capacitación</h4>
+        <p>Sesión de capacitación para equipo Admin y RRHH. Entrega de manual de usuario. Pruebas piloto con usuarios reales antes del lanzamiento oficial.</p>
+      </div>
+    </div>
+    <div class="titem rv">
+      <div class="tweek">Semana<br>8</div>
+      <div class="tdcol"><div class="tdot"></div></div>
+      <div class="tcontent">
+        <h4>Go-live</h4>
+        <p>Lanzamiento oficial del sistema. Acceso habilitado para todos los funcionarios. Soporte prioritario durante los primeros 15 días de operación real.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <h2>Listos para<br><em>comenzar</em></h2>
+  <p>Conversemos sobre cuál plan se ajusta mejor a las necesidades de la Corporación.</p>
+  <div class="cta-btns">
+    <a href="mailto:paula.espinoza@heliceconsultora.cl?subject=Propuesta RRHH Independencia Ciudadana" class="btn-p">Contactar ahora</a>
+    <a href="#" class="btn-s">Ver planes</a>
+  </div>
+</div>
+
+<footer>
+  <p>Consultora <span>Hélice</span> — Propuesta confidencial preparada para Corporación de Desarrollo Social de Independencia — Abril 2026</p>
+  <p>Todos los precios expresados en pesos chilenos (CLP) neto de IVA</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+  document.querySelectorAll('.pamount').forEach(el => {
+    const target = parseInt(el.textContent.replace(/\./g,''));
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      const t0 = performance.now();
+      const tick = now => {
+        const p = Math.min((now - t0) / 1200, 1);
+        const v = Math.round((1 - Math.pow(1-p,3)) * target);
+        el.textContent = v.toLocaleString('es-CL');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    io.observe(el);
+  });
+</script>
+</body>
+</html>

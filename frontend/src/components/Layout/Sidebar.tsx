@@ -1,8 +1,9 @@
-import { Box, Flex, Text, VStack, IconButton } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack, IconButton, Tooltip } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, Users, Calendar, FileText, GitBranch,
-  Phone, User, BarChart2, ClipboardList, Settings, X
+  Phone, User, BarChart2, ClipboardList, Settings, X,
+  ChevronLeft, ChevronRight
 } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
 
@@ -32,10 +33,12 @@ const navItems: NavItem[] = [
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
+  collapsed?: boolean
+  onToggleCollapse?: () => void
 }
 
-function NavItem({ item, onClick }: { item: NavItem; onClick?: () => void }) {
-  return (
+function NavItem({ item, collapsed, onClick }: { item: NavItem; collapsed?: boolean; onClick?: () => void }) {
+  const link = (
     <NavLink
       to={item.to}
       end={item.to === '/'}
@@ -43,8 +46,9 @@ function NavItem({ item, onClick }: { item: NavItem; onClick?: () => void }) {
       style={({ isActive }) => ({
         display: 'flex',
         alignItems: 'center',
-        gap: '10px',
-        padding: '10px 16px',
+        justifyContent: collapsed ? 'center' : 'flex-start',
+        gap: collapsed ? '0' : '10px',
+        padding: collapsed ? '10px' : '10px 16px',
         borderRadius: '10px',
         color: isActive ? '#fff' : 'rgba(255,255,255,0.75)',
         background: isActive ? PINK : 'transparent',
@@ -56,37 +60,52 @@ function NavItem({ item, onClick }: { item: NavItem; onClick?: () => void }) {
       })}
     >
       {item.icon}
-      {item.label}
+      {!collapsed && item.label}
     </NavLink>
   )
+
+  if (collapsed) {
+    return (
+      <Tooltip content={item.label} placement="right">
+        {link}
+      </Tooltip>
+    )
+  }
+
+  return link
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, collapsed = false, onToggleCollapse }: SidebarProps) {
   const { user } = useAuth()
   const visibleItems = navItems.filter(item => !item.roles || (user && item.roles.includes(user.rol)))
+  const w = collapsed ? '64px' : '260px'
 
   const sidebarContent = (
     <Box
-      w="260px"
+      w={w}
       minH="100vh"
       bg={NAVY}
       display="flex"
       flexDir="column"
-      p={4}
+      p={collapsed ? 2 : 4}
       gap={2}
+      transition="width 0.25s, padding 0.25s"
+      overflow="hidden"
     >
-      <Flex align="center" justify="space-between" mb={6} mt={2}>
-        <Box>
-          <Text fontWeight={800} fontSize="1.1rem" color="white" lineHeight={1.1}>
-            independencia
-          </Text>
-          <Text fontWeight={700} fontSize="1.1rem" color={PINK} lineHeight={1.1}>
-            ciudadana
-          </Text>
-          <Text fontSize="0.65rem" color="rgba(255,255,255,0.5)" mt={1}>
-            Sistema RRHH
-          </Text>
-        </Box>
+      <Flex align="center" justify={collapsed ? 'center' : 'space-between'} mb={6} mt={2}>
+        {!collapsed && (
+          <Box>
+            <Text fontWeight={800} fontSize="1.1rem" color="white" lineHeight={1.1}>
+              independencia
+            </Text>
+            <Text fontWeight={700} fontSize="1.1rem" color={PINK} lineHeight={1.1}>
+              ciudadana
+            </Text>
+            <Text fontSize="0.65rem" color="rgba(255,255,255,0.5)" mt={1}>
+              Sistema RRHH
+            </Text>
+          </Box>
+        )}
         <IconButton
           display={{ base: 'flex', lg: 'none' }}
           aria-label="Cerrar menú"
@@ -101,11 +120,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       <VStack gap={1} align="stretch" flex={1}>
         {visibleItems.map(item => (
-          <NavItem key={item.to} item={item} onClick={onClose} />
+          <NavItem key={item.to} item={item} collapsed={collapsed} onClick={onClose} />
         ))}
       </VStack>
 
-      {user && (
+      {user && !collapsed && (
         <Box
           mt={4}
           p={3}
@@ -127,6 +146,21 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           >
             {user.rol}
           </Box>
+        </Box>
+      )}
+
+      {onToggleCollapse && (
+        <Box display={{ base: 'none', lg: 'flex' }} justifyContent={collapsed ? 'center' : 'flex-end'} mt={2}>
+          <IconButton
+            aria-label={collapsed ? 'Expandir menú' : 'Colapsar menú'}
+            onClick={onToggleCollapse}
+            variant="ghost"
+            color="rgba(255,255,255,0.6)"
+            size="sm"
+            _hover={{ color: 'white', bg: 'rgba(255,255,255,0.1)' }}
+          >
+            {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          </IconButton>
         </Box>
       )}
     </Box>

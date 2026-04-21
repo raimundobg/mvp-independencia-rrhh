@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: 'AIzaSyDgw_zL6Z3-ZNj-QI1o8GqjjpTnT3k_0LY',
+  authDomain: 'independencia-rrhh.firebaseapp.com',
+  projectId: 'independencia-rrhh',
+  storageBucket: 'independencia-rrhh.firebasestorage.app',
+  messagingSenderId: '483180144404',
+  appId: '1:483180144404:web:926c6aa01dfdc8b526c401',
 }
 
 export const app = initializeApp(firebaseConfig)
